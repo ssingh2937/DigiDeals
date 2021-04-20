@@ -1,4 +1,4 @@
-package com.sandhu.digideals.Activities;
+package com.sandhu.digideals;
 
 public class ItemData {
     int itemImage;

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sandhu.digideals.Activities.ItemData;
+import com.sandhu.digideals.ItemData;
 import com.sandhu.digideals.R;
 
 import java.util.ArrayList;

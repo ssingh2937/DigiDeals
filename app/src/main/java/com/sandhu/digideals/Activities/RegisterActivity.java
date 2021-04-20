@@ -10,23 +10,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sandhu.digideals.DBHelper;
 import com.sandhu.digideals.R;
+import com.sandhu.digideals.SessionManagement;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView loginIntent;
     EditText nameEdt, usernameEdt, passwordEdt, confirmPasswordEdt;
     Button registerBtn;
+    SessionManagement session;
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
-
+        this.getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
+
+        db = new DBHelper(this);
+        session = new SessionManagement(this);
 
         loginIntent = findViewById(R.id.login_intent_text);
         nameEdt = findViewById(R.id.register_name_text);
@@ -47,16 +49,36 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(nameEdt.getText().toString().equalsIgnoreCase("")){
+                String name = nameEdt.getText().toString().trim();
+                String username = usernameEdt.getText().toString().trim();
+                String pass = passwordEdt.getText().toString().trim();
+                String confirmPass = confirmPasswordEdt.getText().toString();
+
+                if(name.equalsIgnoreCase("")){
                     Toast.makeText(RegisterActivity.this, "Please enter a valid name", Toast.LENGTH_SHORT).show();
-                } else if(usernameEdt.getText().toString().equalsIgnoreCase("")){
+                } else if(username.equalsIgnoreCase("")){
                     Toast.makeText(RegisterActivity.this, "Please enter a valid username", Toast.LENGTH_SHORT).show();
-                } else if(passwordEdt.getText().toString().equalsIgnoreCase("") || passwordEdt.getText().toString().length()<6){
+                } else if(pass.equalsIgnoreCase("") || passwordEdt.getText().toString().length()<6){
                     Toast.makeText(RegisterActivity.this, "Please enter a valid password", Toast.LENGTH_SHORT).show();
-                } else if(!passwordEdt.getText().toString().trim().equalsIgnoreCase(confirmPasswordEdt.getText().toString().trim())){
+                } else if(!pass.equalsIgnoreCase(confirmPass)){
                     Toast.makeText(RegisterActivity.this, "Confirm password is incorrect", Toast.LENGTH_SHORT).show();
                 } else {
+                    boolean checkUsername = db.checkUsername(username);
+                    if (!checkUsername){
+                        boolean insertUser = db.registerUser(name, username, pass);
 
+                        if(insertUser){
+                            Toast.makeText(RegisterActivity.this, "User Registered Successfully", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(RegisterActivity.this, HomePageActivity.class);
+                            session.loggedIn(true);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Username already taken", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

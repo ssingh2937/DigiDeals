@@ -10,12 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sandhu.digideals.DBHelper;
 import com.sandhu.digideals.R;
+import com.sandhu.digideals.SessionManagement;
 
 public class LoginActivity extends AppCompatActivity {
     TextView registerIntentText;
     EditText usernameEdt, passwordEdt;
     Button loginBtn;
+    SessionManagement session;
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,9 @@ public class LoginActivity extends AppCompatActivity {
         catch (NullPointerException e){}
 
         setContentView(R.layout.activity_login);
+
+        db = new DBHelper(this);
+        session = new SessionManagement(this);
 
         registerIntentText = findViewById(R.id.signUpIntentText);
         usernameEdt = findViewById(R.id.login_username_edt);
@@ -45,13 +52,26 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String username = usernameEdt.getText().toString().trim();
+                String pass = passwordEdt.getText().toString().trim();
+
                 if(usernameEdt.getText().toString().equalsIgnoreCase("")){
                     Toast.makeText(LoginActivity.this, "Please enter a valid username", Toast.LENGTH_SHORT).show();
                 } else if(passwordEdt.getText().toString().equalsIgnoreCase("") || passwordEdt.getText().toString().length()<6){
                     Toast.makeText(LoginActivity.this, "Please enter a valid password", Toast.LENGTH_SHORT).show();
                 } else{
-                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                    startActivity(intent);
+                    boolean checkUser = db.checkUsernamePassword(username, pass);
+
+                    if(checkUser){
+                        Toast.makeText(LoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                        session.loggedIn(true);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
             }
         });
