@@ -8,6 +8,7 @@
     android:background="@color/app_gray"
     tools:context=".Activities.LoginActivity">
 
+    <!-- Checking commented-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_centerInParent="true"
