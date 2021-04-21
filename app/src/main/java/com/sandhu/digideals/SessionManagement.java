@@ -22,10 +22,17 @@ public class SessionManagement {
         editor.commit();
     }
 
+    public void destroySession(){
+        editor.putBoolean("login", false);
+        editor.commit();
+    }
+
     public boolean isLoggedIn(){
         boolean result = sp.getBoolean("login", false);
         return result;
     }
+
+
 
 
 }
