@@ -11,13 +11,13 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <!--<fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.sandhu.digideals.Activities.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
     <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.sandhu.digideals.Fragment.CartFragment"
+        android:label="@string/menu_cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <!--<fragment
         android:id="@+id/nav_slideshow"
         android:name="com.sandhu.digideals.Activities.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
