@@ -1,23 +1,23 @@
 package com.sandhu.digideals;
 
 public class ItemData {
-    int itemImage;
+    String itemImage;
     String itemName;
     String itemDesc;
     String itemPrice;
 
-    public ItemData(int itemImage, String itemName, String itemDesc, String itemPrice) {
+    public ItemData(String itemImage, String itemName, String itemDesc, String itemPrice) {
         this.itemImage = itemImage;
         this.itemName = itemName;
         this.itemDesc = itemDesc;
         this.itemPrice = itemPrice;
     }
 
-    public int getItemImage() {
+    public String getItemImage() {
         return itemImage;
     }
 
-    public void setItemImage(int itemImage) {
+    public void setItemImage(String itemImage) {
         this.itemImage = itemImage;
     }
 

@@ -15,8 +15,7 @@
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@color/cardview_dark_background"/>
+            android:layout_height="100dp" />
 
         <TextView
             android:id="@+id/item_desc"
