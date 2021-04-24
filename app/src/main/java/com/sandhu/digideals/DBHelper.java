@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table users(username TEXT primary key, password TEXT, name TEXT)");
         db.execSQL(createTableITEMS);
-        db.execSQL("create table cart(cartid INTEGER PRIMARY KEY AUTOINCREMENT,itemName TEXT,itemQty TEXT);");
+        db.execSQL("create table cart(cartid INTEGER PRIMARY KEY AUTOINCREMENT,itemName TEXT,itemQty TEXT, itemImage BLOB, itemDesc TEXT, itemPrice FLOAT);");
     }
 
     @Override
@@ -88,11 +88,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //Insert into cart table
-    public boolean InsertIntoCart(String name,String productqty){
+    public boolean InsertIntoCart(String name,String productqty, byte[] itemImage, String itemDesc, Float itemPrice){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues cvObj = new ContentValues();
         cvObj.put("itemName",name);
         cvObj.put("itemQty",productqty);
+        cvObj.put("itemImage",itemImage);
+        cvObj.put("itemDesc",itemDesc);
+        cvObj.put("itemPrice",itemPrice);
 
         long result = sqLiteDatabase.insert(cartTableName,null,cvObj);
         if(result == -1)
@@ -101,6 +104,14 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public Cursor getCartData(){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        String select = "SELECT * FROM cart";
+        Cursor cursorObj = sqLiteDatabase.rawQuery(select,null);
+        if(cursorObj != null)
+            cursorObj.moveToFirst();
+        return cursorObj;
+    }
 
     public Cursor getData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();

@@ -26,7 +26,9 @@ public class DescriptionRecord extends AppCompatActivity {
     Spinner quantity;
     String qty[] = {"1","2","3","4","5","6","7","8"};
     Button sumbitbutn;
-    String name;
+    String name, desc;
+    Float price;
+    byte[] image;
     Boolean insertDbState;
 
 
@@ -57,12 +59,12 @@ public class DescriptionRecord extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String productqty = quantity.getSelectedItem().toString();
-                insertDbState =  dbHelper.InsertIntoCart(name,productqty);
+                insertDbState =  dbHelper.InsertIntoCart(name, productqty, image, desc, price);
                 if(insertDbState == true){
-                    Toast.makeText(getApplicationContext(),"Product" + name +" added to cart",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Product " + name +" added to cart",Toast.LENGTH_LONG).show();
                 }
                 else
-                    Toast.makeText(getApplicationContext(),"Product" + name +" donot added to cart",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Product " + name +" donot added to cart",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -78,11 +80,15 @@ public class DescriptionRecord extends AppCompatActivity {
 
         Cursor cursorObj = dbHelper.getItemData(name);
 
-         itemname.setText(cursorObj.getString(cursorObj.getColumnIndex("itemName")));
+        desc = cursorObj.getString(cursorObj.getColumnIndex("itemDesc"));
+        price = cursorObj.getFloat(cursorObj.getColumnIndex("itemPrice"));
+
+        itemname.setText(cursorObj.getString(cursorObj.getColumnIndex("itemName")));
         itemdesc.setText(cursorObj.getString(cursorObj.getColumnIndex("itemDesc")));
-         itemprice.setText("$"+String.valueOf(cursorObj.getFloat(cursorObj.getColumnIndex("itemPrice"))));
+        itemprice.setText("$"+String.valueOf(cursorObj.getFloat(cursorObj.getColumnIndex("itemPrice"))));
 
         byte[] bitmap = cursorObj.getBlob(1);
+        image = bitmap;
         Bitmap image = BitmapFactory.decodeByteArray(bitmap,0,bitmap.length);
 
         imageView.setImageBitmap(image);

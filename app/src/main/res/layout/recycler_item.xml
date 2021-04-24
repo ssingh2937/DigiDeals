@@ -14,6 +14,7 @@
 
         <ImageView
             android:id="@+id/item_image"
+            android:scaleType="centerCrop"
             android:layout_width="388dp"
             android:layout_height="200dp" />
 
@@ -23,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_image"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:textSize="20dp"/>
 
         <TextView
@@ -31,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/name"
            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
             android:textSize="20dp"/>
 
     </RelativeLayout>

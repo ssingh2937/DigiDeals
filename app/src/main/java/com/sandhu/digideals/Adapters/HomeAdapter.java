@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sandhu.digideals.Activities.DescriptionRecord;
+import com.sandhu.digideals.Activities.MapActivity;
 import com.sandhu.digideals.ItemData;
 import com.sandhu.digideals.R;
 

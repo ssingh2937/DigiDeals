@@ -12,10 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
         android:textSize="20dp"/>
 
         <ImageView
             android:id="@+id/desc_image"
+            android:scaleType="centerCrop"
             android:layout_width="388dp"
             android:layout_below="@id/name"
             android:layout_height="400dp" />
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/desc_image"
         android:layout_marginLeft="150dp"
+        android:layout_marginTop="5dp"
         android:text="Price:"
         android:textSize="20dp"/>
 
@@ -37,6 +40,7 @@
             android:layout_toEndOf="@+id/price"
             android:layout_below="@id/desc_image"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:textSize="20dp"/>
 
     <TextView
@@ -44,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/desc_price"
+        android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:text="Description"
         android:textSize="20dp"/>
@@ -62,6 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/desc"
+        android:textStyle="bold"
         android:text="Ratings:"
         android:layout_marginTop="10dp"
         android:textSize="20dp"/>
@@ -71,15 +77,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rating="2.5"
-        android:numStars="6"
+        android:numStars="5"
         android:layout_below="@id/ratheader"
-        android:padding="20dp"/>
+        android:padding="10dp"/>
 
     <TextView
         android:id="@+id/quatheader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ratingbar"
+        android:textStyle="bold"
         android:textSize="20dp"
         android:text="Quantity" />
 
@@ -102,6 +109,8 @@
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
         android:text="Submit" />
 
 
