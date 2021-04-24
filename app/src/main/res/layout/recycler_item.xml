@@ -7,25 +7,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_width="388dp"
+            android:layout_height="200dp" />
 
         <TextView
-            android:id="@+id/item_desc"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_image"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+           android:layout_centerHorizontal="true"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

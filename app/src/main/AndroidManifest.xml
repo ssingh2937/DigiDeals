@@ -15,6 +15,7 @@
             android:theme="@style/Theme.DigiDeals.NoActionBar"></activity>
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.DescriptionRecord" />
         <activity android:name=".Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
