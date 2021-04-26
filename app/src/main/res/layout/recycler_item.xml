@@ -14,9 +14,11 @@
 
         <ImageView
             android:id="@+id/item_image"
-            android:scaleType="centerCrop"
-            android:layout_width="388dp"
-            android:layout_height="200dp" />
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="200dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/name"

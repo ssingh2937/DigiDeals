@@ -15,19 +15,17 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
-
+        //Hiding the action bar
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
         session = new SessionManagement(this);
 
+        //Using handler to show splash screen for 3 seconds
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                //checking if the user is logged in or not
                 if(session.isLoggedIn()) {
                     Intent intent = new Intent(SplashActivity.this, HomePageActivity.class);
                     startActivity(intent);

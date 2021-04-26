@@ -40,11 +40,13 @@ public class DescriptionRecord extends AppCompatActivity {
         dbHelper = new DBHelper(getApplicationContext());
         quantity = (Spinner) findViewById(R.id.quantity);
         sumbitbutn = (Button) findViewById(R.id.submit);
+
         //use array adapter to fill Quantity spinner
         ArrayAdapter adt = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,qty);
         adt.setDropDownViewResource(android.R.layout.simple_spinner_item);
         quantity.setAdapter(adt);
 
+        //getting the data from intent
         Bundle itemName = getIntent().getExtras();
         if(itemName != null){
             name = itemName.getString("name");
@@ -54,6 +56,7 @@ public class DescriptionRecord extends AppCompatActivity {
         OnClickSubmitButton();
     }
 
+    //On submit click
     private void OnClickSubmitButton() {
         sumbitbutn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +72,7 @@ public class DescriptionRecord extends AppCompatActivity {
         });
     }
 
+    //getting item description
     private void getItemDescription(String name) {
        TextView itemname,itemprice,itemdesc;
         ImageView imageView;
@@ -87,6 +91,8 @@ public class DescriptionRecord extends AppCompatActivity {
         itemdesc.setText(cursorObj.getString(cursorObj.getColumnIndex("itemDesc")));
         itemprice.setText("$"+String.valueOf(cursorObj.getFloat(cursorObj.getColumnIndex("itemPrice"))));
 
+
+        //converting the byte to bitmap to set it up on the imageView
         byte[] bitmap = cursorObj.getBlob(1);
         image = bitmap;
         Bitmap image = BitmapFactory.decodeByteArray(bitmap,0,bitmap.length);

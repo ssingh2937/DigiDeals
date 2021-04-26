@@ -24,14 +24,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
-
+        this.getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
 
+        //database and sharedPref class objects
         db = new DBHelper(this);
         session = new SessionManagement(this);
 
@@ -49,12 +45,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //user login
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = usernameEdt.getText().toString().trim();
                 String pass = passwordEdt.getText().toString().trim();
 
+                //applied the required validations
                 if(usernameEdt.getText().toString().equalsIgnoreCase("")){
                     Toast.makeText(LoginActivity.this, "Please enter a valid username", Toast.LENGTH_SHORT).show();
                 } else if(passwordEdt.getText().toString().equalsIgnoreCase("") || passwordEdt.getText().toString().length()<6){

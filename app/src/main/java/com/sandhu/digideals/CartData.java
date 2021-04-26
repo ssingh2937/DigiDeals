@@ -2,6 +2,7 @@ package com.sandhu.digideals;
 
 import android.graphics.Bitmap;
 
+//Object class for storing cart list data
 public class CartData {
     int itemId;
     Bitmap itemImage;

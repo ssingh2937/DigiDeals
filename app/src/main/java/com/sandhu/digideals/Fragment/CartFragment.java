@@ -34,15 +34,12 @@ public class CartFragment extends Fragment {
         dbHelper = new DBHelper(getContext());
 
         recyclerView = v.findViewById(R.id.cart_recycler);
-
-//        CartAdapter adapter = new CartAdapter(getContext());
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerView.setAdapter(adapter);
         getAllData();
 
         return v;
     }
 
+    //getting all data and inflating to a recyclerView
     private void getAllData() {
         ArrayList<CartData> gList = new ArrayList<>();
         Cursor cursorObj = dbHelper.getCartData();

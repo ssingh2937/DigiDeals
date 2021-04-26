@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.sandhu.digideals.R;
 
+//implement the required map interfaces
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -44,15 +45,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        //fetching data from an intent
         Bundle itemName = getIntent().getExtras();
         if(itemName != null){
             name = itemName.getString("name");
         }
 
+        //condition for asking permissions above API level Marshmallow
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-
+        //initializing map fragment
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -78,11 +81,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
         }
 
+        //adding marker in the app to a specific lat long
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(37.4629101,-122.2449094))
                 .title(name)
                 .snippet("Your shop is here"));
 
+        //animating the map to the marker
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.4629101,-122.2449094), 10));
 
     }
@@ -120,6 +125,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
     }
+
+    //check location permissions for maps
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -140,6 +147,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             return true;
         }
     }
+
+    //on getting result from user permissions
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {

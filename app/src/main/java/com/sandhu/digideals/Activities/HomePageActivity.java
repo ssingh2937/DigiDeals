@@ -55,6 +55,7 @@ public class HomePageActivity extends AppCompatActivity {
         return true;
     }
 
+    //setting up the option menu on the action bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();

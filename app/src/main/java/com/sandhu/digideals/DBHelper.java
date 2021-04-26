@@ -45,6 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //Register user in app
     public boolean registerUser(String name, String username, String password){
         SQLiteDatabase myDb = this.getWritableDatabase();
 
@@ -57,6 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    //Check if any user has same username or not
     public boolean checkUsername(String username){
         SQLiteDatabase myDb = this.getWritableDatabase();
 
@@ -64,6 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
+    //Check login credential
     public boolean checkUsernamePassword(String username, String password){
         SQLiteDatabase myDb = this.getWritableDatabase();
 
@@ -104,6 +107,7 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    //Get the data from cart table
     public Cursor getCartData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         String select = "SELECT * FROM cart";
@@ -113,6 +117,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursorObj;
     }
 
+    //Get all items
     public Cursor getData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         String select = "SELECT * FROM Items";
@@ -122,9 +127,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursorObj;
     }
 
+    //Get item Data
     public Cursor getItemData(String name){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        String select = "";
         Cursor cursorObj = sqLiteDatabase.rawQuery("SELECT * FROM Items WHERE itemName = ?",new String[]{name});
         if(cursorObj != null)
             cursorObj.moveToFirst();

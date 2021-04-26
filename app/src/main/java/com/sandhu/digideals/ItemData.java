@@ -2,6 +2,7 @@ package com.sandhu.digideals;
 
 import android.graphics.Bitmap;
 
+//Object class for storing the home page list items
 public class ItemData {
     int itemId;
     Bitmap itemImage;

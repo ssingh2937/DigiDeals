@@ -46,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        //register user
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass = passwordEdt.getText().toString().trim();
                 String confirmPass = confirmPasswordEdt.getText().toString();
 
+                //applied all the required validations
                 if(name.equalsIgnoreCase("")){
                     Toast.makeText(RegisterActivity.this, "Please enter a valid name", Toast.LENGTH_SHORT).show();
                 } else if(username.equalsIgnoreCase("")){

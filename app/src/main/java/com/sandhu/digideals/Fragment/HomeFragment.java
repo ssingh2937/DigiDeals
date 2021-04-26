@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
                     , "Good product for purchase", "Good product for purchase", "Good product for purchase", "Good product for purchase"};
 
             for (int i = 0; i < 10; i++) {
-                insertDbState = dbHelper.InsertItems(convertDrawableToBase64(productImage[i]), productName[i], productDesc[i], productPrice[i]);
+                insertDbState = dbHelper.InsertItems(convertDrawableToByte(productImage[i]), productName[i], productDesc[i], productPrice[i]);
             }
         }
         getImageFromDB();
@@ -60,6 +60,7 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
+    //getting data of items from database
     private void getImageFromDB() {
        ArrayList<ItemData> gList = new ArrayList<>();
         Cursor cursorObj = dbHelper.getData();
@@ -91,7 +92,7 @@ public class HomeFragment extends Fragment {
     }
 
     //convert image to byte for storing in data
-    byte[] convertDrawableToBase64(int image){
+    byte[] convertDrawableToByte(int image){
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
